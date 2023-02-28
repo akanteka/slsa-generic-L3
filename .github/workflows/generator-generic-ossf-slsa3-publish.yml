@@ -19,6 +19,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      UNTRUSTED_SUBJECTS: slsa-subject
+      UNTRUSTED_PROVENANCE_NAME: slsa-sample
+      UNTRUSTED_DEPRECATED_ATTESTATION_NAME: slsa-attestation
     outputs:
       digests: ${{ steps.hash.outputs.digests }}
 
