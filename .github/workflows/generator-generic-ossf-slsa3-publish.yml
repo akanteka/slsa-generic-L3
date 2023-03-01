@@ -18,7 +18,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: selt-hosted
     env:
       UNTRUSTED_SUBJECTS: slsa-subject
       UNTRUSTED_PROVENANCE_NAME: slsa-sample
