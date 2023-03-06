@@ -18,7 +18,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-letest
     outputs:
       digests: ${{ steps.hash.outputs.digests }}
 
@@ -85,7 +85,7 @@ jobs:
       
   release:
     needs: [build, provenance]
-    runs-on: sefl-hosted
+    runs-on: ubuntu-letest
     if: startsWith(github.ref, 'refs/tags/')
     steps:
       - name: Download artifact1
