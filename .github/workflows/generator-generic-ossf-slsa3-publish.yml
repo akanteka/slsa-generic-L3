@@ -19,10 +19,6 @@ on:
 jobs:
   build:
     runs-on: self-hosted
-    #env:
-      #UNTRUSTED_SUBJECTS: slsa-subject
-      #UNTRUSTED_PROVENANCE_NAME: slsa-sample
-      #UNTRUSTED_DEPRECATED_ATTESTATION_NAME: slsa-attestation
     outputs:
       digests: ${{ steps.hash.outputs.digests }}
 
@@ -48,16 +44,6 @@ jobs:
       #         provenance for.
       #
       # ========================================================
-      #- name: Generate subject for provenance
-      #  id: hash
-      #  run: |
-      #    set -euo pipefail
-
-          # List the artifacts the provenance will refer to.
-       #   files=$(ls artifact*)
-          # Generate the subjects (base64 encoded).
-       #  echo "hashes=$(sha256sum $files | base64 -w0)" >> "${GITHUB_OUTPUT}"
-          
       - name: Upload artifact1
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # tag=v3.1.0
         with:
@@ -73,6 +59,17 @@ jobs:
           path: artifact2
           if-no-files-found: error
           retention-days: 5
+      
+      - name: Generate subject for provenance
+        id: hash
+        run: |
+          set -euo pipefail
+
+          # List the artifacts the provenance will refer to.
+          files=$(ls artifact*)
+          # Generate the subjects (base64 encoded).
+          echo "hashes=$(sha256sum $files | base64 -w0)" >> "${GITHUB_OUTPUT}"
+          
 
   provenance:
     needs: [build]
