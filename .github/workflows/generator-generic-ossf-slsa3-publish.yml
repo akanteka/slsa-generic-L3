@@ -20,7 +20,7 @@ jobs:
   build:
     runs-on: ubuntu-letest
     outputs:
-      digests: ${{ steps.hash.outputs.hashes }}
+      digests: ${{ steps.hash.outputs.digests }}
 
     steps:
       - uses: actions/checkout@v3
