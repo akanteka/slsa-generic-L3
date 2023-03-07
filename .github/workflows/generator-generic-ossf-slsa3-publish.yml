@@ -83,24 +83,3 @@ jobs:
       #envs: base64-subjects=slsa-subject,provenance-name=slsa-level-three,attestation-name=slsa-attestation
       upload-assets: true # Optional: Upload to a new release
       
-  release:
-    needs: [build, provenance]
-    runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/')
-    steps:
-      - name: Download artifact1
-        uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741 # tag=v2.1.0
-        with:
-          name: artifact1
-
-      - name: Download artifact2
-        uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741 # tag=v2.1.0
-        with:
-          name: artifact2
-
-      - name: Upload assets
-        uses: softprops/action-gh-release@1e07f4398721186383de40550babbdf2b84acfc5 # v0.1.14
-        with:
-          files: |
-            artifact1
-            artifact2
