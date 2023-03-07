@@ -11,10 +11,8 @@
 # For more information about SLSA and how it improves the supply-chain, visit slsa.dev.
 
 name: SLSA generic generator
-on:
-  workflow_dispatch:
-  release:
-    types: [created]
+
+on: push
 
 jobs:
   build:
